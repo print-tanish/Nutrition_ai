@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #d1f2eb, #fef9e7);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.4s ease;
+}
+
+body.dark {
+  background: #121212;
+  color: white;
+}
+
+.container {
+  background: #ffffff;
+  padding: 2.5em;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  width: 90%;
+  max-width: 600px;
+  animation: fadeIn 0.8s ease;
+}
+
+body.dark .container {
+  background: #1e1e1e;
+  color: white;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+  text-align: center;
+  color: #2e7d32;
+  margin-bottom: 1.5em;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-top: 1em;
+  color: #2c3e50;
+}
+
+input, select {
+  padding: 0.8em;
+  margin-top: 0.4em;
+  border-radius: 6px;
+  border: 1px solid #b2bec3;
+  font-size: 1em;
+  transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #27ae60;
+}
+
+button {
+  background: #27ae60;
+  color: white;
+  padding: 0.9em;
+  margin-top: 1.5em;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #1e8449;
+}
+
+.meal-result {
+  background-color: #f0f8f5;
+  border-left: 6px solid #27ae60;
+  padding: 1.5em;
+  margin-top: 1.5em;
+  border-radius: 10px;
+  font-size: 1em;
+  white-space: pre-wrap;
+  color: #34495e;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.back-btn {
+  display: block;
+  text-align: center;
+  margin-top: 2em;
+  padding: 0.8em 1.5em;
+  background-color: #2e7d32;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: #1b5e20;
+}

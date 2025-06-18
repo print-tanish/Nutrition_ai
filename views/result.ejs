@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your AI Meal Plan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body onload="detectTheme()">
+  <div class="container">
+    <button onclick="toggleTheme()">🌓 Toggle Theme</button>
+    <h1>🍱 Your Personalized Meal Plan</h1>
+
+    <!-- Show user input summary -->
+    <div class="user-summary">
+      <p><strong>Goal:</strong> <%= goal %></p>
+      <p><strong>Calories:</strong> <%= calories %></p>
+      <p><strong>Country:</strong> <%= Country %></p>
+      <p><strong>Diet:</strong> <%= diet %></p>
+    </div>
+
+    <!-- Display meal plan -->
+    <div class="meal-result"><%= mealPlan %></div>
+
+    <!-- Download button -->
+    <button onclick="downloadText()">⬇️ Download</button>
+<button onclick="speakText()">🔊 Read Aloud</button>
+<button onclick="downloadPDF()">📄 Download as PDF</button>
+
+    <a href="/" class="back-btn">🔁 Generate Another Plan</a>
+  </div>
+
+  <script>
+    function downloadText() {
+      const blob = new Blob([document.querySelector('.meal-result').innerText], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'meal-plan.txt';
+      link.click();
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
+    }
+  </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+  function toggleTheme() {
+    document.body.classList.toggle("dark");
+    localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+  }
+
+  function detectTheme() {
+    if (localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark");
+    }
+  }
+
+  function speakText() {
+    const text = document.querySelector('.meal-result').innerText;
+    const utterance = new SpeechSynthesisUtterance(text);
+    speechSynthesis.speak(utterance);
+  }
+
+  async function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    const text = document.querySelector('.meal-result').innerText;
+
+    const lines = doc.splitTextToSize(text, 180);
+    doc.text(lines, 10, 10);
+    doc.save('meal-workout-plan.pdf');
+  }
+</script>
+</body>
+
+</html>
