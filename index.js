@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 require("dotenv").config();
 
 const app = express();
-const API_key = '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';
+const API_key = process.env.API_KEY;
+
 
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
